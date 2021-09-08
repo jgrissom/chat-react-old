@@ -2,12 +2,27 @@
 // Author:      Jeff Grissom
 // Version:     1.xx
 import './App.css';
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
+import { HubConnectionBuilder } from '@microsoft/signalr';
 import ChatForm from './Components/ChatForm';
 import ChatMessage from './Components/ChatMessage';
 
 function App() {
   const [chat, setChat] = useState([]);
+  // const chatHubEndPoint = "https://localhost:5001/hubs/chat";
+  const chatHubEndPoint = "https://aws-chat.azurewebsites.net/hubs/chat";
+  const [ connection, setConnection] = useState(null);
+
+  // componentDidMount
+  useEffect(() => {
+    const newConnection = new HubConnectionBuilder()
+      .withUrl(chatHubEndPoint)
+      .withAutomaticReconnect()
+      .build();
+
+    setConnection(newConnection);
+  }, []);
+
   const handleSend = (chatMessage) => {
     let mutableChat = [...chat];
     mutableChat.push(chatMessage);
