@@ -24,6 +24,7 @@ const ChatForm = (props) => {
         autoCapitalize="off">
       </input><br />
       <input
+        disabled={ name.trim().length === 0 }
         type="text" 
         id="Message" 
         onChange={ (e) => setMessage(e.target.value) }
@@ -33,8 +34,10 @@ const ChatForm = (props) => {
         autoComplete="off"
         autoCapitalize="off">
       </input><br />
-      <button type="submit">
-        Send Message
+      <button 
+        disabled={ name.trim().length === 0 || message.trim().length === 0 }  
+        type="submit">
+          Send Message
       </button>
     </form>
   );
