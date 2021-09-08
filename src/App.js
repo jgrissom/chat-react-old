@@ -2,7 +2,7 @@
 // Author:      Jeff Grissom
 // Version:     1.xx
 import './App.css';
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 import ChatForm from './Components/ChatForm';
 import ChatMessage from './Components/ChatMessage';
@@ -12,6 +12,8 @@ function App() {
   // const chatHubEndPoint = "https://localhost:5001/hubs/chat";
   const chatHubEndPoint = "https://aws-chat.azurewebsites.net/hubs/chat";
   const [ connection, setConnection] = useState(null);
+  const latestChat = useRef(null);
+  latestChat.current = chat;
 
   // componentDidMount
   useEffect(() => {
@@ -31,7 +33,9 @@ function App() {
           console.log('Connected!');
 
           connection.on('ReceiveMessage', m => {
-            console.log(m);
+            const updatedChat = [...latestChat.current];
+            updatedChat.push(m);
+            setChat(updatedChat);
           });
         })
         .catch(e => console.log('Connection failed: ', e));
