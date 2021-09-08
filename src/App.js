@@ -3,11 +3,12 @@
 // Version:     1.xx
 import './App.css';
 import React from 'react';
+import ChatForm from './Components/ChatForm';
 
 function App() {
   return (
     <React.Fragment>
-      Hello World!
+      <ChatForm />
     </React.Fragment>
   );
 }
