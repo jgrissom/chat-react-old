@@ -1,8 +1,13 @@
 import React from 'react';
 
 const ChatForm = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('submit');
+  }
+
   return (
-    <form className='Chat-form'>
+    <form onSubmit={handleSubmit} className='Chat-form'>
       <input 
         type="text" 
         id="name" 
