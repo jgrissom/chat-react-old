@@ -23,3 +23,24 @@
   padding-top: 138px;
   z-index: 1;
 }
+
+.Chat-message {
+  width: 90%;
+  max-width: 540px;
+  min-width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4px;
+  background-color: #2F42D0;
+  opacity: .8;
+  color: white;
+  padding: 8px 10px 8px 10px;;
+  text-align: left;
+  font-size: 1.2em;
+  border-radius: 4px;
+}
+
+.Chat-message span {
+  opacity: .6;
+  font-variant: small-caps;
+}

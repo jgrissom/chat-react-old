@@ -2,9 +2,9 @@ import React from 'react';
 
 const ChatMessage = () => {
   return (
-    <React.Fragment>
-      Message
-    </React.Fragment>
+    <div className="Chat-message">
+      <span>Name &gt; </span> Message
+    </div>
   );
 }
 
