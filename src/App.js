@@ -29,15 +29,18 @@ function App() {
       connection.start()
         .then(() => {
           console.log('Connected!');
+
+          connection.on('ReceiveMessage', m => {
+            console.log(m);
+          });
         })
         .catch(e => console.log('Connection failed: ', e));
     }
   }, [connection]);
 
-  const handleSend = (chatMessage) => {
-    let mutableChat = [...chat];
-    mutableChat.push(chatMessage);
-    setChat(mutableChat);
+  const handleSend = async (chatMessage) => {
+    const m = {name: chatMessage.name, message: chatMessage.message};
+    await connection.send('SendMessage', m);
   }
 
   return (
