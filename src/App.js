@@ -23,6 +23,17 @@ function App() {
     setConnection(newConnection);
   }, []);
 
+  // componentDidUpdate (changes to connection)
+  useEffect(() => {
+    if (connection) {
+      connection.start()
+        .then(() => {
+          console.log('Connected!');
+        })
+        .catch(e => console.log('Connection failed: ', e));
+    }
+  }, [connection]);
+
   const handleSend = (chatMessage) => {
     let mutableChat = [...chat];
     mutableChat.push(chatMessage);
