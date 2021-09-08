@@ -1,18 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 
 const ChatForm = (props) => {
   const { onSend } = props;
   const [ name, setName ] = useState('');
   const [ message, setMessage ] = useState('');
-  
+
+  const nameEl = useRef(null);
+  const messageEl = useRef(null);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setMessage('');
+    nameEl.current.disabled = true;
+    messageEl.current.focus();
     onSend({ name, message });
   }
   
   return (
     <form onSubmit={handleSubmit} className='Chat-form'>
       <input 
+        ref={nameEl}
         type="text" 
         id="name" 
         onChange={ (e) => setName(e.target.value) }
@@ -24,6 +31,7 @@ const ChatForm = (props) => {
         autoCapitalize="off">
       </input><br />
       <input
+        ref={messageEl}
         disabled={ name.trim().length === 0 }
         type="text" 
         id="Message" 
