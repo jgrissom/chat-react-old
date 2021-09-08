@@ -18,3 +18,8 @@
   border-radius: 4px;
   box-sizing:content-box;
 }
+
+.Chat-messages {
+  padding-top: 138px;
+  z-index: 1;
+}
