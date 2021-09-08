@@ -1,9 +1,11 @@
 import React from 'react';
 
-const ChatMessage = () => {
+const ChatMessage = (props) => {
+  const {chat} = props;
+
   return (
     <div className="Chat-message">
-      <span>Name &gt; </span> Message
+      <span>{chat.name} &gt;</span> {chat.message}
     </div>
   );
 }
